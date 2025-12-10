@@ -11,6 +11,17 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
+        
+      - name: Run test
+        run: echo "Tests passed successfully!"
+        
+      - name: Build project
+        run: |
+          mkdir build
+          echo "This is my build artifact" > build/artifact.txt
 
-      - name: Run a test command
-        run: echo "Hello! CI Pipeline is working "
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: build/
